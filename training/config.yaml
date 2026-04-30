@@ -1,0 +1,25 @@
+epochs: 12
+batch_size: 32
+learning_rate: 0.0003
+weight_decay: 0.0001
+warmup_steps: 200
+val_split: 0.15
+n_episodes: 200
+episode_minutes: 720
+stride: 60
+risk_loss_weight: 0.2
+grad_clip: 1.0
+device: auto
+seed: 1337
+output_dir: artifacts
+
+model:
+  n_channels: 6
+  history: 360
+  horizon: 120
+  d_model: 128
+  n_heads: 8
+  n_encoder_layers: 4
+  n_decoder_layers: 2
+  dim_feedforward: 256
+  dropout: 0.1
