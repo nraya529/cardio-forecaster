@@ -1,0 +1,26 @@
+services:
+  backend:
+    build: ./backend
+    container_name: cardio-backend
+    restart: unless-stopped
+    environment:
+      CARDIO_LOG_LEVEL: INFO
+    volumes:
+      - ./backend/artifacts:/app/artifacts
+    ports:
+      - "8000:8000"
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:8000/api/v1/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+  frontend:
+    build: ./frontend
+    container_name: cardio-frontend
+    restart: unless-stopped
+    depends_on:
+      backend:
+        condition: service_healthy
+    ports:
+      - "5173:80"
