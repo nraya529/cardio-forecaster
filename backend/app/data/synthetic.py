@@ -30,13 +30,15 @@ CHANNELS = ("hr", "sbp", "dbp", "spo2", "resp", "temp")
 
 
 def sample_patient(rng: np.random.Generator) -> PatientPhenotype:
-    age = float(rng.normal(64, 14).clip(18, 95))
+    # rng.normal() with no size= returns a Python float, not an ndarray, so
+    # `.clip()` doesn't exist on it — use np.clip instead.
+    age = float(np.clip(rng.normal(64, 14), 18, 95))
     return PatientPhenotype(
         age=age,
         baseline_hr=float(rng.normal(78, 9)),
         baseline_sbp=float(rng.normal(122, 12)),
         baseline_dbp=float(rng.normal(74, 8)),
-        baseline_spo2=float(rng.normal(97, 1.2).clip(90, 100)),
+        baseline_spo2=float(np.clip(rng.normal(97, 1.2), 90, 100)),
         baseline_resp=float(rng.normal(16, 2)),
         baseline_temp=float(rng.normal(36.9, 0.3)),
         deterioration_prob=float(rng.beta(1.2, 6.0)),
