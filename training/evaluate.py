@@ -43,7 +43,7 @@ def evaluate(checkpoint: Path, n_episodes: int, seed: int) -> dict:
     mae_per_channel /= n_episodes
     risk_acc = risk_correct / n_episodes
     return {
-        "mae_per_channel": dict(zip(predictor.settings.channel_names, mae_per_channel.tolist(), strict=True)),
+        "mae_per_channel": dict(zip(predictor.settings.channel_names, mae_per_channel.tolist())),
         "deterioration_detection_acc": risk_acc,
         "n_episodes": n_episodes,
     }

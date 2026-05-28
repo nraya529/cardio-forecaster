@@ -6,7 +6,10 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
-    model_config = SettingsConfigDict(env_file=".env", env_prefix="CARDIO_", extra="ignore")
+    # protected_namespaces=() because we have model_path / model_arch / etc as legit setting names
+    model_config = SettingsConfigDict(
+        env_file=".env", env_prefix="CARDIO_", extra="ignore", protected_namespaces=(),
+    )
 
     app_name: str = "CardioForecaster"
     api_v1_prefix: str = "/api/v1"

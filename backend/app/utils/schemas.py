@@ -1,7 +1,7 @@
 """Pydantic API contracts."""
 from __future__ import annotations
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class VitalsWindow(BaseModel):
@@ -46,6 +46,9 @@ class SimulationRequest(BaseModel):
 
 
 class HealthResponse(BaseModel):
+    # model_loaded clashes with pydantic's protected model_ namespace — opt out.
+    model_config = ConfigDict(protected_namespaces=())
+
     status: str
     model_loaded: bool
     device: str
