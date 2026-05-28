@@ -53,7 +53,7 @@ class MimicWaveformLoader:
         if not self.root.exists():
             return
         try:
-            import wfdb  # noqa: WPS433 - optional dependency
+            import wfdb
         except ImportError as err:  # pragma: no cover - documented optional path
             raise ImportError(
                 "wfdb is required to read MIMIC waveform records. "
@@ -64,7 +64,7 @@ class MimicWaveformLoader:
             record_name = str(header.with_suffix("")).removeprefix(str(self.root) + "/")
             try:
                 record = wfdb.rdrecord(str(header.with_suffix("")))
-            except Exception as err:  # noqa: BLE001 - skip corrupt records
+            except Exception as err:
                 logger.warning("Skipping record %s: %s", record_name, err)
                 continue
 

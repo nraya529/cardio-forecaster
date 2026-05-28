@@ -16,7 +16,7 @@ class ChannelStats:
     std: np.ndarray
 
     @classmethod
-    def from_episodes(cls, episodes: list[np.ndarray]) -> "ChannelStats":
+    def from_episodes(cls, episodes: list[np.ndarray]) -> ChannelStats:
         stacked = np.concatenate(episodes, axis=0)
         mean = stacked.mean(axis=0)
         std = stacked.std(axis=0)
@@ -33,7 +33,7 @@ class ChannelStats:
         return {"mean": self.mean.tolist(), "std": self.std.tolist()}
 
     @classmethod
-    def from_dict(cls, payload: dict) -> "ChannelStats":
+    def from_dict(cls, payload: dict) -> ChannelStats:
         return cls(
             mean=np.asarray(payload["mean"], dtype=np.float32),
             std=np.asarray(payload["std"], dtype=np.float32),
