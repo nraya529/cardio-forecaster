@@ -1,5 +1,10 @@
 # cardio-forecaster
 
+![CI](https://github.com/nraya529/cardio-forecaster/actions/workflows/ci.yml/badge.svg)
+![python](https://img.shields.io/badge/python-3.11-blue.svg)
+![pytorch](https://img.shields.io/badge/pytorch-2.5-ee4c2c.svg)
+![docker](https://img.shields.io/badge/docker-ready-2496ed.svg)
+
 Trying to teach a Transformer to forecast continuous-time ICU vital signs.
 
 I got into this after reading Project Lumos's writeup on PhysioFM. The idea
@@ -17,10 +22,6 @@ two hours, plus a per-minute "this trajectory looks bad" probability.
 A FastAPI service does inference, a React dashboard plots the observed window
 in solid color and the forecast as a dashed line, and there's a docker-compose
 file that boots the whole thing locally.
-
-![CI](https://github.com/nraya529/cardio-forecaster/actions/workflows/ci.yml/badge.svg)
-![python](https://img.shields.io/badge/python-3.11-blue.svg)
-![pytorch](https://img.shields.io/badge/pytorch-2.5-ee4c2c.svg)
 
 ## quickstart
 
